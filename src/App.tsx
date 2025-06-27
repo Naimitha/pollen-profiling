@@ -40,24 +40,33 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
       <Header />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Brazilian Savannah Pollen Analysis
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full mb-6">
+            <span className="text-sm font-semibold text-emerald-700">Advanced AI Classification</span>
+          </div>
+          <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            Brazilian Savannah
+            <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              Pollen Analysis
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Upload a pollen grain image and let our specialized machine learning model identify 
-            species from the Brazilian Cerrado region with scientific accuracy.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Upload a microscopic pollen grain image and let our specialized machine learning model identify 
+            species from the Brazilian Cerrado region with scientific precision and detailed taxonomic classification.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Upload Pollen Image</h3>
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="space-y-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                <h3 className="text-xl font-bold text-gray-900">Upload Pollen Sample</h3>
+              </div>
               <ImageUpload
                 onImageSelect={handleImageSelect}
                 selectedImage={selectedImage}
@@ -66,33 +75,45 @@ function App() {
             </div>
 
             {selectedImage && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Analysis Process</h3>
-                <div className="space-y-3 text-sm text-gray-600">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-semibold text-green-600">1</span>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                  <h3 className="text-xl font-bold text-gray-900">Analysis Pipeline</h3>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <span className="text-sm font-bold text-white">1</span>
                     </div>
-                    <p>Pollen grain image is preprocessed and enhanced for analysis</p>
+                    <div className="pt-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Image Preprocessing</h4>
+                      <p className="text-gray-600">Pollen grain image is enhanced and normalized for optimal analysis</p>
+                    </div>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-semibold text-green-600">2</span>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <span className="text-sm font-bold text-white">2</span>
                     </div>
-                    <p>Specialized CNN model trained on Cerrado flora analyzes morphological features</p>
+                    <div className="pt-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Feature Extraction</h4>
+                      <p className="text-gray-600">Specialized CNN analyzes morphological patterns unique to Cerrado flora</p>
+                    </div>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-semibold text-green-600">3</span>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <span className="text-sm font-bold text-white">3</span>
                     </div>
-                    <p>Species identification with confidence scores based on taxonomic classification</p>
+                    <div className="pt-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Species Classification</h4>
+                      <p className="text-gray-600">Taxonomic identification with confidence scores and probability distribution</p>
+                    </div>
                   </div>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             <PredictionResults
               result={predictionResult}
               isLoading={isLoading}
@@ -100,53 +121,83 @@ function App() {
             />
 
             {!selectedImage && !isLoading && (
-              <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-                <div className="text-gray-400 mb-4">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                    <span className="text-2xl">🌾</span>
-                  </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <span className="text-4xl">🔬</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Ready for Pollen Analysis
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Ready for Analysis
                 </h3>
-                <p className="text-gray-600">
-                  Upload a microscopic pollen grain image to identify species from the Brazilian 
-                  Cerrado savannah. Get scientific classifications with confidence scores.
+                <p className="text-gray-600 leading-relaxed">
+                  Upload a high-resolution microscopic pollen grain image to begin species identification 
+                  from the Brazilian Cerrado savannah ecosystem. Our AI model provides detailed scientific 
+                  classifications with confidence metrics.
                 </p>
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              About Brazilian Cerrado Pollen Classification
-            </h3>
-            <div className="text-left space-y-4">
-              <p className="text-gray-600">
+        <div className="mt-24">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-12 max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                Brazilian Cerrado Biodiversity
+              </h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 The Brazilian Cerrado is one of the world's most biodiverse savannas, home to over 
-                12,000 plant species. This specialized ML model has been trained to identify pollen 
-                grains from key Cerrado species including:
+                12,000 plant species. Our specialized ML model identifies pollen from key species.
               </p>
-              <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
-                <div className="bg-green-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-2">Trees & Shrubs</h4>
-                  <ul className="space-y-1">
-                    <li>• <em>Qualea grandiflora</em> (Pau-terra)</li>
-                    <li>• <em>Dipteryx alata</em> (Baru)</li>
-                    <li>• <em>Hancornia speciosa</em> (Mangaba)</li>
-                    <li>• <em>Tabebuia aurea</em> (Paratudo)</li>
-                  </ul>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-8 border border-emerald-100">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                  <h4 className="text-xl font-bold text-emerald-800">Trees & Shrubs</h4>
                 </div>
-                <div className="bg-yellow-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-yellow-800 mb-2">Palms & Herbs</h4>
-                  <ul className="space-y-1">
-                    <li>• <em>Mauritia flexuosa</em> (Buriti)</li>
-                    <li>• <em>Vellozia squamata</em> (Canela-de-ema)</li>
-                    <li>• <em>Curatella americana</em> (Lixeira)</li>
-                    <li>• <em>Byrsonima verbascifolia</em> (Murici)</li>
-                  </ul>
+                <div className="space-y-3 text-gray-700">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                    <span><em className="font-medium">Qualea grandiflora</em> (Pau-terra)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                    <span><em className="font-medium">Dipteryx alata</em> (Baru)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                    <span><em className="font-medium">Hancornia speciosa</em> (Mangaba)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                    <span><em className="font-medium">Tabebuia aurea</em> (Paratudo)</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-8 border border-amber-100">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
+                  <h4 className="text-xl font-bold text-amber-800">Palms & Herbs</h4>
+                </div>
+                <div className="space-y-3 text-gray-700">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <span><em className="font-medium">Mauritia flexuosa</em> (Buriti)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <span><em className="font-medium">Vellozia squamata</em> (Canela-de-ema)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <span><em className="font-medium">Curatella americana</em> (Lixeira)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <span><em className="font-medium">Byrsonima verbascifolia</em> (Murici)</span>
+                  </div>
                 </div>
               </div>
             </div>

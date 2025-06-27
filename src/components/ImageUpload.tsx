@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { Upload, X, Image as ImageIcon, Camera } from 'lucide-react';
 
 interface ImageUploadProps {
   onImageSelect: (file: File) => void;
@@ -61,10 +61,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     <div className="w-full max-w-2xl mx-auto">
       {!selectedImage ? (
         <div
-          className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 ${
+          className={`relative border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
             dragActive
-              ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-300 hover:border-gray-400'
+              ? 'border-emerald-400 bg-emerald-50 scale-105'
+              : 'border-gray-300 hover:border-emerald-300 hover:bg-emerald-50/50'
           } ${isLoading ? 'opacity-50 pointer-events-none' : ''}`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -79,47 +79,62 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
             disabled={isLoading}
           />
           
-          <div className="flex flex-col items-center space-y-4">
-            <div className="p-4 bg-gray-100 rounded-full">
-              <Upload className="w-8 h-8 text-gray-600" />
+          <div className="flex flex-col items-center space-y-6">
+            <div className="relative">
+              <div className="p-6 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl">
+                <Upload className="w-12 h-12 text-emerald-600" />
+              </div>
+              <div className="absolute -top-2 -right-2 p-2 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full">
+                <Camera className="w-4 h-4 text-white" />
+              </div>
             </div>
             <div>
-              <p className="text-lg font-medium text-gray-900 mb-2">
-                Drop your image here or click to browse
+              <p className="text-xl font-bold text-gray-900 mb-3">
+                Drop your pollen image here
               </p>
-              <p className="text-sm text-gray-500">
-                Supports JPG, PNG, WebP up to 10MB
+              <p className="text-gray-600 mb-4">
+                or click to browse your files
               </p>
+              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full">
+                <span className="text-sm font-medium text-emerald-700">
+                  Supports JPG, PNG, WebP • Max 10MB
+                </span>
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="relative bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
           <div className="relative">
             {previewUrl && (
               <img
                 src={previewUrl}
-                alt="Selected image"
-                className="w-full h-64 object-cover"
+                alt="Selected pollen sample"
+                className="w-full h-80 object-cover"
               />
             )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             <button
               onClick={clearImage}
-              className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+              className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-200 shadow-lg hover:scale-110"
               disabled={isLoading}
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
-          <div className="p-4 bg-gray-50">
-            <div className="flex items-center space-x-2">
-              <ImageIcon className="w-4 h-4 text-gray-500" />
-              <span className="text-sm text-gray-700 truncate">
-                {selectedImage.name}
-              </span>
-              <span className="text-xs text-gray-500">
-                ({(selectedImage.size / 1024 / 1024).toFixed(2)} MB)
-              </span>
+          <div className="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-emerald-100 rounded-lg">
+                <ImageIcon className="w-5 h-5 text-emerald-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-900 truncate">
+                  {selectedImage.name}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {(selectedImage.size / 1024 / 1024).toFixed(2)} MB • Ready for analysis
+                </p>
+              </div>
             </div>
           </div>
         </div>
